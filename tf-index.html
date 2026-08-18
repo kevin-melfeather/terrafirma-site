@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terrafirma — Terrazzo Flooring</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --slate:     #1C2B2D;
+      --stone:     #C8B8A2;
+      --brass:     #A67C52;
+      --offwhite:  #F5F0EA;
+      --terra:     #7A4F3A;
+      --light:     #E8E0D4;
+      --mid:       #8A9A9C;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--offwhite);
+      color: var(--slate);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.25rem 3rem;
+      background: rgba(28, 43, 45, 0.96);
+      backdrop-filter: blur(8px);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem; font-weight: 700;
+      color: var(--stone); letter-spacing: 0.04em;
+    }
+    .nav-logo span { color: var(--brass); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      color: var(--stone); text-decoration: none;
+      font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
+      font-weight: 400; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--brass); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative; min-height: 100vh;
+      display: flex; align-items: center;
+      background: var(--slate);
+      overflow: hidden;
+    }
+    .terrazzo-canvas {
+      position: absolute; inset: 0;
+      opacity: 0.18;
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 8rem 3rem 4rem;
+      max-width: 900px;
+    }
+    .hero-eyebrow {
+      font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--brass); margin-bottom: 1.5rem; font-weight: 500;
+    }
+    .hero-headline {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 7vw, 6.5rem);
+      font-weight: 900; line-height: 1.02;
+      color: var(--offwhite);
+      margin-bottom: 1.5rem;
+    }
+    .hero-headline em {
+      font-style: italic; color: var(--stone);
+    }
+    .hero-sub {
+      font-size: 1.05rem; color: var(--mid);
+      max-width: 480px; line-height: 1.8;
+      margin-bottom: 3rem;
+    }
+    .hero-cta {
+      display: inline-block;
+      background: var(--brass); color: var(--offwhite);
+      padding: 1rem 2.5rem;
+      font-size: 0.82rem; letter-spacing: 0.14em; text-transform: uppercase;
+      font-weight: 500; text-decoration: none;
+      transition: background 0.25s, transform 0.2s;
+    }
+    .hero-cta:hover { background: var(--terra); transform: translateY(-1px); }
+    .hero-scroll {
+      position: absolute; bottom: 2.5rem; left: 3rem;
+      display: flex; align-items: center; gap: 1rem;
+      color: var(--mid); font-size: 0.72rem;
+      letter-spacing: 0.16em; text-transform: uppercase;
+    }
+    .hero-scroll::before {
+      content: ''; display: block; width: 40px; height: 1px; background: var(--brass);
+    }
+
+    /* ── INTRO BAND ── */
+    .intro-band {
+      background: var(--stone);
+      padding: 3rem;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 2rem; flex-wrap: wrap;
+    }
+    .intro-band p {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+      font-style: italic; color: var(--slate);
+      max-width: 640px; line-height: 1.55;
+    }
+    .intro-stats { display: flex; gap: 3rem; flex-shrink: 0; }
+    .stat-item { text-align: center; }
+    .stat-num {
+      display: block; font-family: 'Playfair Display', serif;
+      font-size: 2.8rem; font-weight: 700; color: var(--slate);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.7rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--terra);
+      margin-top: 0.3rem; display: block;
+    }
+
+    /* ── SECTION COMMONS ── */
+    section { padding: 6rem 3rem; }
+    .section-eyebrow {
+      font-size: 0.7rem; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--brass);
+      margin-bottom: 1rem; font-weight: 500;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 700; line-height: 1.15;
+      color: var(--slate); margin-bottom: 1.5rem;
+    }
+    .rule { width: 48px; height: 2px; background: var(--brass); margin-bottom: 2rem; }
+
+    /* ── SECTORS ── */
+    .sectors { background: var(--offwhite); }
+    .sectors-intro { max-width: 560px; margin-bottom: 4rem; }
+    .sectors-intro p { color: var(--mid); font-size: 1rem; line-height: 1.8; }
+    .sectors-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px; background: var(--light);
+    }
+    @media (max-width: 900px) {
+      .sectors-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    .sector-card {
+      background: var(--offwhite);
+      padding: 3rem 2.5rem;
+      position: relative; overflow: hidden;
+      transition: background 0.3s;
+    }
+    .sector-card:hover { background: var(--slate); }
+    .sector-card:hover .sector-name { color: var(--stone); }
+    .sector-card:hover .sector-body { color: var(--mid); }
+    .sector-card:hover .sector-icon-wrap { border-color: var(--brass); }
+    .sector-card:hover .sector-link { color: var(--brass); }
+    .sector-icon-wrap {
+      width: 52px; height: 52px;
+      border: 1.5px solid var(--stone);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 2rem;
+      transition: border-color 0.3s;
+    }
+    .sector-icon-wrap svg { width: 26px; height: 26px; }
+    .sector-tag {
+      font-size: 0.65rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--brass);
+      margin-bottom: 0.75rem; display: block;
+    }
+    .sector-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.7rem; font-weight: 700;
+      color: var(--slate); margin-bottom: 1rem;
+      line-height: 1.15; transition: color 0.3s;
+    }
+    .sector-body {
+      font-size: 0.9rem; color: var(--mid);
+      line-height: 1.8; margin-bottom: 2rem;
+      transition: color 0.3s;
+    }
+    .sector-link {
+      font-size: 0.72rem; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--terra);
+      text-decoration: none; font-weight: 500;
+      transition: color 0.3s;
+    }
+    .sector-link::after { content: ' →'; }
+    .sector-chip-accent {
+      position: absolute; bottom: -20px; right: -20px;
+      width: 100px; height: 100px;
+      border-radius: 50%; opacity: 0.07;
+      background: var(--brass);
+    }
+
+    /* ── PROCESS ── */
+    .process { background: var(--slate); }
+    .process .section-title { color: var(--offwhite); }
+    .process .section-eyebrow { color: var(--brass); }
+    .process .rule { background: var(--brass); }
+    .process-body {
+      color: var(--mid); font-size: 1rem;
+      line-height: 1.8; max-width: 500px; margin-bottom: 4rem;
+    }
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0; border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .step {
+      padding: 2.5rem 2rem;
+      border-right: 1px solid rgba(255,255,255,0.08);
+    }
+    .step:last-child { border-right: none; }
+    .step-label {
+      font-size: 0.65rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--brass);
+      margin-bottom: 0.75rem;
+    }
+    .step-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem; font-weight: 700;
+      color: var(--offwhite); margin-bottom: 0.75rem;
+    }
+    .step-desc {
+      font-size: 0.85rem; color: var(--mid); line-height: 1.75;
+    }
+
+    /* ── MATERIALS ── */
+    .materials { background: var(--offwhite); }
+    .materials-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: start;
+    }
+    .materials-text p {
+      font-size: 1rem; color: var(--mid); line-height: 1.85;
+      margin-bottom: 1.25rem;
+    }
+    .materials-chips {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      margin-top: 2rem;
+    }
+    .chip-tag {
+      background: var(--slate); color: var(--stone);
+      padding: 0.4rem 1rem;
+      font-size: 0.72rem; letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .terrazzo-swatch {
+      position: relative; width: 100%; aspect-ratio: 3/4;
+      overflow: hidden;
+    }
+    .swatch-label {
+      position: absolute; bottom: 1.5rem; left: 1.5rem;
+      font-size: 0.65rem; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--offwhite);
+      background: rgba(28,43,45,0.7); padding: 0.4rem 0.8rem;
+    }
+
+    /* ── QUOTE ── */
+    .quote-section {
+      background: var(--terra);
+      padding: 5rem 3rem;
+      text-align: center;
+    }
+    .quote-mark {
+      font-family: 'Playfair Display', serif;
+      font-size: 6rem; line-height: 0.5;
+      color: rgba(255,255,255,0.2); margin-bottom: 1rem;
+    }
+    .quote-text {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      font-style: italic;
+      color: var(--offwhite); max-width: 700px;
+      margin: 0 auto 1.5rem; line-height: 1.45;
+    }
+    .quote-attr {
+      font-size: 0.72rem; letter-spacing: 0.18em;
+      text-transform: uppercase; color: rgba(245,240,234,0.6);
+    }
+
+    /* ── CONTACT ── */
+    .contact { background: var(--offwhite); }
+    .contact-layout {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: start;
+    }
+    .contact-info p {
+      font-size: 0.95rem; color: var(--mid);
+      line-height: 1.8; margin-bottom: 2rem;
+    }
+    .contact-detail {
+      margin-bottom: 1.25rem;
+    }
+    .contact-detail-label {
+      font-size: 0.65rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--brass);
+      margin-bottom: 0.2rem;
+    }
+    .contact-detail-val {
+      font-size: 0.95rem; color: var(--slate);
+    }
+    .contact-form { display: flex; flex-direction: column; gap: 1.25rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-group label {
+      font-size: 0.65rem; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--brass); font-weight: 500;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: transparent;
+      border: none; border-bottom: 1.5px solid var(--stone);
+      padding: 0.65rem 0;
+      font-size: 0.9rem; color: var(--slate);
+      font-family: 'Inter', sans-serif;
+      outline: none; transition: border-color 0.2s;
+      width: 100%;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--brass); }
+    .form-group textarea { resize: vertical; min-height: 90px; }
+    .form-submit {
+      background: var(--slate); color: var(--offwhite);
+      border: none; padding: 1rem 2.5rem;
+      font-size: 0.82rem; letter-spacing: 0.14em; text-transform: uppercase;
+      font-family: 'Inter', sans-serif; font-weight: 500;
+      cursor: pointer; transition: background 0.25s; align-self: flex-start;
+    }
+    .form-submit:hover { background: var(--brass); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--slate);
+      padding: 2rem 3rem;
+      display: flex; align-items: center;
+      justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; color: var(--stone);
+      letter-spacing: 0.04em;
+    }
+    .footer-logo span { color: var(--brass); }
+    .footer-copy {
+      font-size: 0.72rem; color: var(--mid);
+      letter-spacing: 0.08em;
+    }
+    .footer-links { display: flex; gap: 2rem; }
+    .footer-links a {
+      font-size: 0.7rem; color: var(--mid);
+      letter-spacing: 0.12em; text-transform: uppercase;
+      text-decoration: none; transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--brass); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      section { padding: 4rem 1.5rem; }
+      .intro-band { padding: 2rem 1.5rem; flex-direction: column; }
+      .intro-stats { gap: 2rem; }
+      .materials-layout,
+      .contact-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .terrazzo-swatch { aspect-ratio: 4/3; }
+      footer { flex-direction: column; align-items: flex-start; }
+      .hero-content { padding: 6rem 1.5rem 3rem; }
+      .hero-scroll { left: 1.5rem; }
+    }
+
+    /* ── INSTAGRAM ── */
+    .instagram-section {
+      background: var(--slate);
+      padding: 5rem 3rem;
+      text-align: center;
+    }
+    .instagram-section .section-eyebrow { color: var(--brass); }
+    .instagram-section .section-title { color: var(--offwhite); margin: 0 auto 0.75rem; }
+    .instagram-section .rule { margin: 0 auto 1.5rem; }
+    .instagram-intro {
+      color: var(--mid); font-size: 0.95rem;
+      max-width: 480px; margin: 0 auto 2.5rem;
+      line-height: 1.8;
+    }
+    .instagram-handle-link {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      color: var(--stone); text-decoration: none;
+      font-size: 1rem; font-weight: 500; letter-spacing: 0.04em;
+      margin-bottom: 3rem;
+      transition: color 0.2s;
+    }
+    .instagram-handle-link:hover { color: var(--brass); }
+    .instagram-handle-link svg { width: 20px; height: 20px; flex-shrink: 0; }
+    .instagram-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: auto auto;
+      gap: 3px;
+      max-width: 960px;
+      margin: 0 auto 2.5rem;
+    }
+    .ig-tile {
+      position: relative;
+      aspect-ratio: 1;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .ig-tile canvas {
+      width: 100%; height: 100%; display: block;
+    }
+    .ig-tile-overlay {
+      position: absolute; inset: 0;
+      background: rgba(28,43,45,0);
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.3s;
+    }
+    .ig-tile:hover .ig-tile-overlay { background: rgba(28,43,45,0.55); }
+    .ig-tile-overlay-content {
+      opacity: 0; transition: opacity 0.3s;
+      display: flex; flex-direction: column;
+      align-items: center; gap: 0.4rem;
+    }
+    .ig-tile:hover .ig-tile-overlay-content { opacity: 1; }
+    .ig-tile-label {
+      font-size: 0.65rem; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--offwhite);
+      font-weight: 500;
+    }
+    .ig-tile-icon { color: var(--brass); }
+    .ig-tile.featured {
+      grid-column: span 2;
+      grid-row: span 2;
+      aspect-ratio: unset;
+    }
+    .ig-cta-wrap { margin-top: 1rem; }
+    .ig-cta {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      border: 1.5px solid var(--brass); color: var(--brass);
+      padding: 0.85rem 2.2rem;
+      font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase;
+      font-weight: 500; text-decoration: none;
+      transition: background 0.25s, color 0.25s;
+    }
+    .ig-cta:hover { background: var(--brass); color: var(--offwhite); }
+    .ig-cta svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+    @media (max-width: 600px) {
+      .instagram-grid { grid-template-columns: repeat(2, 1fr); }
+      .ig-tile.featured { grid-column: span 2; grid-row: span 1; aspect-ratio: 1; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Terra<span>firma</span></div>
+  <ul class="nav-links">
+    <li><a href="#sectors">Sectors</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#materials">Materials</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <canvas class="terrazzo-canvas" id="terrazzo"></canvas>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Terrazzo Flooring &mdash; Est. 1987</p>
+    <h1 class="hero-headline">
+      Floors built<br>to <em>outlast</em><br>the building.
+    </h1>
+    <p class="hero-sub">
+      Terrafirma crafts terrazzo flooring for spaces that demand permanence — from firehouses and schools to luxury residences and landmark building lobbies where the floor must endure decades of use without losing its character.
+    </p>
+    <a href="#contact" class="hero-cta">Request a Consultation</a>
+  </div>
+  <div class="hero-scroll">Scroll to explore</div>
+</section>
+
+<!-- INTRO BAND -->
+<div class="intro-band">
+  <p>"Terrazzo is not a surface — it is a record of craft, embedded in the earth beneath your feet."</p>
+  <div class="intro-stats">
+    <div class="stat-item">
+      <span class="stat-num">200+</span>
+      <span class="stat-label">Installations</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">35+</span>
+      <span class="stat-label">Years experience</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">100yr</span>
+      <span class="stat-label">Material lifespan</span>
+    </div>
+  </div>
+</div>
+
+<!-- SECTORS -->
+<section class="sectors" id="sectors">
+  <div class="sectors-intro">
+    <p class="section-eyebrow">Who We Serve</p>
+    <h2 class="section-title">Five sectors.<br>One standard of craft.</h2>
+    <div class="rule"></div>
+    <p>From civic institutions to landmark residences, we work where permanence is non-negotiable — spaces that need their floors to perform beautifully for a century, not a lease term.</p>
+  </div>
+  <div class="sectors-grid">
+
+    <div class="sector-card">
+      <div class="sector-icon-wrap">
+        <svg viewBox="0 0 26 26" fill="none" stroke="#A67C52" stroke-width="1.5" stroke-linecap="round">
+          <path d="M3 22V10l10-7 10 7v12H3z"/>
+          <path d="M9 22v-6h8v6"/>
+          <path d="M3 10h20"/>
+          <path d="M1 22h24"/>
+        </svg>
+      </div>
+      <span class="sector-tag">Sector One</span>
+      <h3 class="sector-name">Fire Houses</h3>
+      <p class="sector-body">Apparatus bays, dormitories, and common areas that take extreme mechanical abuse daily. Our epoxy terrazzo systems resist oil, fuel, abrasion, and the weight of heavy apparatus — without cracking, staining, or requiring replacement.</p>
+      <a href="#contact" class="sector-link">Learn more</a>
+      <div class="sector-chip-accent"></div>
+    </div>
+
+    <div class="sector-card">
+      <div class="sector-icon-wrap">
+        <svg viewBox="0 0 26 26" fill="none" stroke="#A67C52" stroke-width="1.5" stroke-linecap="round">
+          <path d="M13 2v4M2 22h22M5 22V10h16v12"/>
+          <path d="M9 22v-5h8v5"/>
+          <path d="M13 6l-7 4h14l-7-4z"/>
+          <line x1="13" y1="2" x2="13" y2="6"/>
+        </svg>
+      </div>
+      <span class="sector-tag">Sector Two</span>
+      <h3 class="sector-name">Churches</h3>
+      <p class="sector-body">Sanctuaries, narthexes, and fellowship halls deserve floors that honor the space. We work with clergy and architects to incorporate custom medallions, inlaid symbols, and color palettes that reflect a congregation's identity — in material that lasts generations.</p>
+      <a href="#contact" class="sector-link">Learn more</a>
+      <div class="sector-chip-accent"></div>
+    </div>
+
+    <div class="sector-card">
+      <div class="sector-icon-wrap">
+        <svg viewBox="0 0 26 26" fill="none" stroke="#A67C52" stroke-width="1.5" stroke-linecap="round">
+          <rect x="2" y="8" width="22" height="14" rx="1"/>
+          <path d="M7 8V5a2 2 0 014 0v3M15 8V5a2 2 0 014 0v3"/>
+          <line x1="2" y1="13" x2="24" y2="13"/>
+          <line x1="9" y1="13" x2="9" y2="22"/>
+          <line x1="17" y1="13" x2="17" y2="22"/>
+        </svg>
+      </div>
+      <span class="sector-tag">Sector Three</span>
+      <h3 class="sector-name">Schools</h3>
+      <p class="sector-body">Hallways, cafeterias, and gymnasia face thousands of footsteps daily for decades. Terrazzo's hardness, ease of cleaning, and lack of seams make it the most hygienic and lowest-maintenance option for K–12 and higher education facilities.</p>
+      <a href="#contact" class="sector-link">Learn more</a>
+      <div class="sector-chip-accent"></div>
+    </div>
+
+    <div class="sector-card">
+      <div class="sector-icon-wrap">
+        <svg viewBox="0 0 26 26" fill="none" stroke="#A67C52" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 22V6h18v16H4z"/>
+          <path d="M9 22v-7h8v7"/>
+          <path d="M9 11h2M15 11h2M9 15h2M15 15h2"/>
+          <path d="M4 10h18"/>
+          <path d="M2 6l11-4 11 4"/>
+        </svg>
+      </div>
+      <span class="sector-tag">Sector Four</span>
+      <h3 class="sector-name">Building Lobbies &amp; Elevators</h3>
+      <p class="sector-body">The lobby is a building's first and last impression. We design and install terrazzo floors and elevator cabs that command attention — seamless patterns that flow from the street entrance through to the lift, with custom inlaid medallions and precision brass detailing that signal quality from the moment the door opens.</p>
+      <a href="#contact" class="sector-link">Learn more</a>
+      <div class="sector-chip-accent"></div>
+    </div>
+
+    <div class="sector-card">
+      <div class="sector-icon-wrap">
+        <svg viewBox="0 0 26 26" fill="none" stroke="#A67C52" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 22h20"/>
+          <path d="M5 22V10l8-7 8 7v12"/>
+          <path d="M10 22v-5a3 3 0 016 0v5"/>
+          <path d="M9 13h2M15 13h2M9 17h2M15 17h2"/>
+        </svg>
+      </div>
+      <span class="sector-tag">Sector Five</span>
+      <h3 class="sector-name">High-End Residential</h3>
+      <p class="sector-body">Kitchens and bathrooms in luxury residences demand a material that is simultaneously beautiful and indestructible. Terrazzo is waterproof, seamless, and infinitely customizable — a bespoke floor, countertop, or shower surround that is uniquely yours, impossible to replicate, and grows more beautiful with age.</p>
+      <a href="#contact" class="sector-link">Learn more</a>
+      <div class="sector-chip-accent"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <p class="section-eyebrow">How We Work</p>
+  <h2 class="section-title">The Terrafirma process.</h2>
+  <div class="rule"></div>
+  <p class="process-body">Every installation begins with deep listening. We understand your budget, timeline, code requirements, and aesthetic vision before a single chip is poured.</p>
+  <div class="process-steps">
+    <div class="step">
+      <p class="step-label">Step A</p>
+      <h3 class="step-name">Site Assessment</h3>
+      <p class="step-desc">We evaluate substrate condition, load requirements, moisture levels, and existing floor systems. No guesswork — just data.</p>
+    </div>
+    <div class="step">
+      <p class="step-label">Step B</p>
+      <h3 class="step-name">Design Selection</h3>
+      <p class="step-desc">Choose from hundreds of chip varieties, binders, and divider strip metals. We produce physical samples before any commitment.</p>
+    </div>
+    <div class="step">
+      <p class="step-label">Step C</p>
+      <h3 class="step-name">Preparation</h3>
+      <p class="step-desc">Substrate grinding, crack repair, and primer application. The floor beneath the floor is as important as what's on top.</p>
+    </div>
+    <div class="step">
+      <p class="step-label">Step D</p>
+      <h3 class="step-name">Pour & Cure</h3>
+      <p class="step-desc">Matrix is poured, leveled, and allowed to cure fully — no shortcuts. Rushing this step is how you get a floor that fails in five years.</p>
+    </div>
+    <div class="step">
+      <p class="step-label">Step E</p>
+      <h3 class="step-name">Grinding & Polish</h3>
+      <p class="step-desc">Sequential diamond grinding reveals the aggregate pattern. Final polish brings the floor to its specified sheen — from matte to mirror.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MATERIALS -->
+<section class="materials" id="materials">
+  <div class="materials-layout">
+    <div class="materials-text">
+      <p class="section-eyebrow">What We Use</p>
+      <h2 class="section-title">Material integrity,<br>without compromise.</h2>
+      <div class="rule"></div>
+      <p>We work exclusively with Portland cement and epoxy binders from established suppliers. Our aggregate library includes marble, glass, granite, mother-of-pearl, and recycled post-industrial chips — all verified for consistency and sourced responsibly.</p>
+      <p>Divider strips in brass, aluminum, or white alloy define patterns and control expansion. These aren't decorative afterthoughts — they are structural elements that prevent cracking and allow the floor to breathe over decades of thermal cycling.</p>
+      <p>We carry no proprietary product lines. Every specification we make is driven by what performs best for your space, not what's most profitable for us.</p>
+      <div class="materials-chips">
+        <span class="chip-tag">Marble aggregate</span>
+        <span class="chip-tag">Glass chip</span>
+        <span class="chip-tag">Granite</span>
+        <span class="chip-tag">Mother of Pearl</span>
+        <span class="chip-tag">Recycled glass</span>
+        <span class="chip-tag">Epoxy binder</span>
+        <span class="chip-tag">Portland cement</span>
+        <span class="chip-tag">Brass dividers</span>
+        <span class="chip-tag">Aluminum strips</span>
+      </div>
+    </div>
+    <div>
+      <div class="terrazzo-swatch">
+        <canvas id="swatch" style="width:100%;height:100%;display:block;"></canvas>
+        <span class="swatch-label">Sample — Brass & Marble, Warm Mix</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<div class="quote-section">
+  <div class="quote-mark">"</div>
+  <p class="quote-text">Terrafirma installed our sanctuary floor in 1999. Twenty-five years later, it still looks like the day it was finished. That's not maintenance — that's craftsmanship.</p>
+  <p class="quote-attr">— Rev. Marcus Ellison, Saint Augustine's Church, Columbus OH</p>
+</div>
+
+<!-- INSTAGRAM -->
+<section class="instagram-section" id="gallery">
+  <p class="section-eyebrow">Our Work</p>
+  <h2 class="section-title">Seen on Instagram.</h2>
+  <div class="rule"></div>
+  <p class="instagram-intro">Follow along as we document installations in progress, finished floors, and the details that make terrazzo unlike any other material.</p>
+  <a href="https://www.instagram.com/tfterrazzo/" target="_blank" rel="noopener" class="instagram-handle-link">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/>
+      <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/>
+    </svg>
+    @tfterrazzo
+  </a>
+
+  <div class="instagram-grid" id="igGrid">
+    <!-- tiles rendered by JS -->
+  </div>
+
+  <div class="ig-cta-wrap">
+    <a href="https://www.instagram.com/tfterrazzo/" target="_blank" rel="noopener" class="ig-cta">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/>
+        <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/>
+      </svg>
+      View the full gallery on Instagram
+    </a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-layout">
+    <div class="contact-info">
+      <p class="section-eyebrow">Get in Touch</p>
+      <h2 class="section-title">Start your project.</h2>
+      <div class="rule"></div>
+      <p>We work with general contractors, architects, facility managers, and direct clients. Every project begins with a no-obligation site visit and assessment.</p>
+      <div class="contact-detail">
+        <p class="contact-detail-label">Contact</p>
+        <p class="contact-detail-val">Andreas Barkouras</p>
+      </div>
+      <div class="contact-detail">
+        <p class="contact-detail-label">Phone</p>
+        <p class="contact-detail-val"><a href="tel:5165238386" style="color:inherit;text-decoration:none;">516-523-8386</a></p>
+      </div>
+      <div class="contact-detail">
+        <p class="contact-detail-label">Email</p>
+        <p class="contact-detail-val"><a href="mailto:Andreas@tf-terrazzo.com" style="color:inherit;text-decoration:none;">Andreas@tf-terrazzo.com</a></p>
+      </div>
+    </div>
+    <div class="contact-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" placeholder="James" />
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" placeholder="Briggs" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Organization</label>
+        <input type="text" placeholder="Westside Fire Station No. 4" />
+      </div>
+      <div class="form-group">
+        <label>Sector</label>
+        <select>
+          <option value="">Select a sector</option>
+          <option>Fire House</option>
+          <option>Church / Religious Institution</option>
+          <option>School / Educational Facility</option>
+          <option>Building Lobby &amp; Elevators</option>
+          <option>High-End Residential (Kitchen / Bath)</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="james@example.com" />
+        </div>
+        <div class="form-group">
+          <label>Phone</label>
+          <input type="tel" placeholder="(614) 555-0000" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Project Description</label>
+        <textarea placeholder="Tell us about the space, approximate square footage, and timeline..."></textarea>
+      </div>
+      <button class="form-submit">Submit Inquiry</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Terra<span>firma</span></div>
+  <p class="footer-copy">&copy; 2026 Terrafirma. All rights reserved.</p>
+  <nav class="footer-links">
+    <a href="#sectors">Sectors</a>
+    <a href="#process">Process</a>
+    <a href="#materials">Materials</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</footer>
+
+<script>
+  /* ── INSTAGRAM GRID ── */
+  (function() {
+    const grid = document.getElementById('igGrid');
+
+    const tiles = [
+      { label: 'Church Sanctuary', featured: true,
+        palette: ['#F5F0EA','#C8B8A2','#A67C52','#1C2B2D','#D4C5B0'], base: '#C4B49A', dividers: '#A67C52' },
+      { label: 'School Corridor',
+        palette: ['#8A9A9C','#1C2B2D','#F5F0EA','#6B8890','#D4C5B0'], base: '#7A8A8C', dividers: '#C8B8A2' },
+      { label: 'Fire Station Bay',
+        palette: ['#1C2B2D','#7A4F3A','#C8B8A2','#2C3B3D','#8A6040'], base: '#2A3A3C', dividers: '#A67C52' },
+      { label: 'Lobby Medallion',
+        palette: ['#F5F0EA','#A67C52','#1C2B2D','#E8E0D4','#C8B8A2'], base: '#D8CEBE', dividers: '#A67C52' },
+      { label: 'Residential Kitchen',
+        palette: ['#F5F0EA','#E8E0D4','#C8B8A2','#A67C52','#8A6040'], base: '#EAE2D8', dividers: '#8A7060' },
+      { label: 'Elevator Cab',
+        palette: ['#1C2B2D','#A67C52','#C8B8A2','#8A9A9C','#D4C5B0'], base: '#1C2B2D', dividers: '#A67C52' },
+      { label: 'Church Narthex',
+        palette: ['#D4C5B0','#7A4F3A','#F5F0EA','#C8B8A2','#A67C52'], base: '#C8B49A', dividers: '#7A4F3A' },
+      { label: 'Bath Surround',
+        palette: ['#F5F0EA','#C8B8A2','#8A9A9C','#E0D8CC','#D4C5B0'], base: '#EEE8E0', dividers: '#8A9A9C' },
+      { label: 'School Cafeteria',
+        palette: ['#6B8890','#1C2B2D','#8A9A9C','#C8B8A2','#F5F0EA'], base: '#4A6870', dividers: '#C8B8A2' },
+    ];
+
+    function drawTile(canvas, tile) {
+      const ctx = canvas.getContext('2d');
+      const W = canvas.width = canvas.offsetWidth * devicePixelRatio;
+      const H = canvas.height = canvas.offsetHeight * devicePixelRatio;
+      canvas.style.width  = canvas.offsetWidth  + 'px';
+      canvas.style.height = canvas.offsetHeight + 'px';
+
+      // base
+      ctx.fillStyle = tile.base;
+      ctx.fillRect(0, 0, W, H);
+
+      // chips
+      const count = tile.featured ? 1400 : 700;
+      for (let i = 0; i < count; i++) {
+        const x   = Math.random() * W;
+        const y   = Math.random() * H;
+        const w   = (3 + Math.random() * 18) * devicePixelRatio;
+        const h   = (2 + Math.random() * 11) * devicePixelRatio;
+        const rot = Math.random() * Math.PI;
+        const col = tile.palette[Math.floor(Math.random() * tile.palette.length)];
+        const sides = 4 + Math.floor(Math.random() * 3);
+
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(rot);
+        ctx.globalAlpha = 0.5 + Math.random() * 0.5;
+        ctx.fillStyle = col;
+        ctx.beginPath();
+        for (let s = 0; s < sides; s++) {
+          const angle = (s / sides) * Math.PI * 2;
+          const rx = (w / 2) * (0.7 + Math.random() * 0.6);
+          const ry = (h / 2) * (0.7 + Math.random() * 0.6);
+          s === 0
+            ? ctx.moveTo(Math.cos(angle) * rx, Math.sin(angle) * ry)
+            : ctx.lineTo(Math.cos(angle) * rx, Math.sin(angle) * ry);
+        }
+        ctx.closePath();
+        ctx.fill();
+        ctx.restore();
+      }
+
+      // divider grid
+      ctx.globalAlpha = 0.45;
+      ctx.strokeStyle = tile.dividers;
+      ctx.lineWidth = devicePixelRatio;
+      const cols = tile.featured ? 8 : 5;
+      const rows = tile.featured ? 10 : 6;
+      for (let i = 0; i <= cols; i++) {
+        const x = (W / cols) * i;
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
+      }
+      for (let i = 0; i <= rows; i++) {
+        const y = (H / rows) * i;
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+      }
+
+      // featured: draw a diamond medallion in center
+      if (tile.featured) {
+        ctx.globalAlpha = 0.18;
+        ctx.strokeStyle = tile.dividers;
+        ctx.lineWidth = devicePixelRatio * 2;
+        const cx = W / 2, cy = H / 2, r = Math.min(W, H) * 0.28;
+        ctx.beginPath();
+        ctx.moveTo(cx, cy - r);
+        ctx.lineTo(cx + r, cy);
+        ctx.lineTo(cx, cy + r);
+        ctx.lineTo(cx - r, cy);
+        ctx.closePath();
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(cx, cy, r * 0.55, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+
+      ctx.globalAlpha = 1;
+    }
+
+    tiles.forEach((tile, i) => {
+      const div = document.createElement('div');
+      div.className = 'ig-tile' + (i === 0 ? ' featured' : '');
+
+      const canvas = document.createElement('canvas');
+      const overlay = document.createElement('div');
+      overlay.className = 'ig-tile-overlay';
+      overlay.innerHTML = `
+        <div class="ig-tile-overlay-content">
+          <svg class="ig-tile-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+            <rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/>
+            <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/>
+          </svg>
+          <span class="ig-tile-label">${tile.label}</span>
+        </div>`;
+
+      div.appendChild(canvas);
+      div.appendChild(overlay);
+      div.addEventListener('click', () => window.open('https://www.instagram.com/tfterrazzo/', '_blank'));
+      grid.appendChild(div);
+
+      // draw after layout
+      requestAnimationFrame(() => drawTile(canvas, tile));
+    });
+  })();
+
+  /* ── TERRAZZO CANVAS (hero) ── */
+  (function() {
+    const canvas = document.getElementById('terrazzo');
+    const ctx = canvas.getContext('2d');
+    const chips = [];
+    const colors = ['#C8B8A2','#A67C52','#7A4F3A','#8A9A9C','#F5F0EA','#1C2B2D','#D4C5B0','#B09070'];
+
+    function resize() {
+      canvas.width  = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+    }
+
+    function addChips(n) {
+      for (let i = 0; i < n; i++) {
+        chips.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          w: 4 + Math.random() * 18,
+          h: 3 + Math.random() * 12,
+          rot: Math.random() * Math.PI,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          alpha: 0.4 + Math.random() * 0.6
+        });
+      }
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      chips.forEach(c => {
+        ctx.save();
+        ctx.translate(c.x, c.y);
+        ctx.rotate(c.rot);
+        ctx.globalAlpha = c.alpha;
+        ctx.fillStyle = c.color;
+        ctx.beginPath();
+        ctx.ellipse(0, 0, c.w/2, c.h/2, 0, 0, Math.PI*2);
+        ctx.fill();
+        ctx.restore();
+      });
+    }
+
+    window.addEventListener('resize', () => { resize(); chips.length=0; addChips(600); draw(); });
+    resize();
+    addChips(600);
+    draw();
+  })();
+
+  /* ── TERRAZZO SWATCH (materials) ── */
+  (function() {
+    const c = document.getElementById('swatch');
+    const parent = c.parentElement;
+    const ctx = c.getContext('2d');
+
+    function resize() {
+      c.width  = parent.offsetWidth;
+      c.height = parent.offsetHeight;
+    }
+
+    function draw() {
+      // base matrix
+      ctx.fillStyle = '#C8B8A2';
+      ctx.fillRect(0, 0, c.width, c.height);
+
+      const palette = ['#F5F0EA','#A67C52','#1C2B2D','#D4C5B0','#7A4F3A','#E8E0D4','#8A6040','#6B8890'];
+
+      for (let i = 0; i < 1800; i++) {
+        const x   = Math.random() * c.width;
+        const y   = Math.random() * c.height;
+        const w   = 3 + Math.random() * 22;
+        const h   = 2 + Math.random() * 14;
+        const rot = Math.random() * Math.PI;
+        const col = palette[Math.floor(Math.random() * palette.length)];
+
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(rot);
+        ctx.globalAlpha = 0.55 + Math.random() * 0.45;
+        ctx.fillStyle = col;
+        // irregular polygon
+        ctx.beginPath();
+        const sides = 4 + Math.floor(Math.random()*3);
+        for (let s = 0; s < sides; s++) {
+          const angle = (s / sides) * Math.PI * 2;
+          const rx = w/2 * (0.75 + Math.random()*0.5);
+          const ry = h/2 * (0.75 + Math.random()*0.5);
+          s === 0
+            ? ctx.moveTo(Math.cos(angle)*rx, Math.sin(angle)*ry)
+            : ctx.lineTo(Math.cos(angle)*rx, Math.sin(angle)*ry);
+        }
+        ctx.closePath();
+        ctx.fill();
+        ctx.restore();
+      }
+
+      // brass divider lines
+      ctx.globalAlpha = 0.7;
+      ctx.strokeStyle = '#A67C52';
+      ctx.lineWidth = 1.5;
+      for (let i = 0; i < 6; i++) {
+        const x = (c.width / 6) * i;
+        ctx.beginPath();
+        ctx.moveTo(x, 0); ctx.lineTo(x, c.height);
+        ctx.stroke();
+      }
+      for (let i = 0; i < 8; i++) {
+        const y = (c.height / 8) * i;
+        ctx.beginPath();
+        ctx.moveTo(0, y); ctx.lineTo(c.width, y);
+        ctx.stroke();
+      }
+      ctx.globalAlpha = 1;
+    }
+
+    // observe size
+    if (window.ResizeObserver) {
+      new ResizeObserver(() => { resize(); draw(); }).observe(parent);
+    }
+    resize(); draw();
+  })();
+</script>
+</body>
+</html>
